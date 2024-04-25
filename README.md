@@ -1,19 +1,19 @@
-### Lookus / RU
+# Lookus / RU
 
 Lookus - это web-приложение для поиска, оценки и просмотра информации о вашил любимых фильмах.
 
-### Технологии
+## Технологии
 
-### Возможности
+## Возможности
 
-### Инструкция по использованию
+## Инструкция по использованию
 
-### Lookus / US
+# Lookus / US
 
 Lookus - is a web application for searching, rating and information search about your favourite films.
 
-### Technologies
+## Technologies
 
-### Capabilities
+## Capabilities
 
-### Instruction manual
+## Instruction manual
