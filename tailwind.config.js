@@ -6,6 +6,15 @@ export default {
   ],
   theme: {
     extend: {},
+    colors: {
+      white: "#FFFFFF",
+      black: "#000000",
+      
+      primary: "#413E44",
+      secondary: "#4B474E",
+      accent: "#524F55"
+
+    }
   },
   plugins: [],
 }
