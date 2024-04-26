@@ -17,6 +17,9 @@ const Container = (props:CProps) => {
         case "lg":
             maxW = "max-w-4xl"
             break;
+        case "xl":
+            maxW = "max-w-6xl"
+            break;
         case "full":
             maxW = "max-w-full"
             break;

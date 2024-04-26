@@ -6,13 +6,13 @@ import Container from "../components/Container"
 const MainLayout = () => {
     return(
         <>
-            <Container maxW="lg">
-                <Flexbox>
+            <Container maxW="xl">
+                <Flexbox className="gap-0">
                     <Sidebar/>
-                    <Flexbox className="flex-col justify-between">
+                    <div className="h-full w-full">
                         <Outlet/>
-                        <footer>footer</footer>
-                    </Flexbox>
+                        <footer className="mt-auto px-2 py-4 bg-secondary w-full">footer</footer>
+                    </div>
                 </Flexbox>
             </Container>
         </>
