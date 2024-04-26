@@ -1,6 +1,7 @@
 import Flexbox from "../components/Flexbox"
 import Text from "../components/Text"
 import Card from "../components/Card"
+import filmsAPI from "../data/filmsAPI.json";
 
 const MainPage = () => {
     return(
@@ -8,9 +9,9 @@ const MainPage = () => {
             <Text url="#" size="lg" className="font-semibold">Популярные фильмы</Text>
             <div>
                 <Card
-                    title="Paciffic rim"
-                    pageURL="#"
-                    posterURL="/tixookeanskij-rubezh-pacific-rim-fantastika-vojna-2013.jpg"
+                    title={filmsAPI[0].title}
+                    pageURL={`/films/${filmsAPI[0].id}`}
+                    posterURL={`/${filmsAPI[0].poster}`}
                 />
             </div>
         </Flexbox>
