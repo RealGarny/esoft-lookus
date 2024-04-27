@@ -3,6 +3,7 @@ import Text from "../components/Text"
 import Card from "../components/Card"
 import filmsAPI from "../data/filmsAPI.json";
 import routes from "../routes/routes";
+import { useEffect } from "react";
 
 const MainPage = () => {
 
@@ -12,16 +13,21 @@ const MainPage = () => {
         <Flexbox className="px-12 py-6 flex-col">
             <Text url="#" size="lg" className="font-semibold">Популярные фильмы</Text>
             <Text size="md" className="font-semibold">Фильтры</Text>
-            <div className="grid grid-cols-3 gap-2">
-                <Card
-                    title={filmsAPI[0].title}
-                    pageURL={`${filmsItemRoute}${filmsAPI[0].id}`}
-                    posterURL={`/${filmsAPI[0].poster}`}
-                    rating= {filmsAPI[0].rating}
-                    ageRate= {filmsAPI[0].ageRate}
-                    tagline={filmsAPI[0].tagline}
-                    year= {filmsAPI[0].year}
-                />
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                {filmsAPI.map((film) => {
+                    return(
+                    <Card
+                        key={film.id}
+                        pageURL={`${filmsItemRoute}${film.id}`}
+                        posterURL={film.poster.url}
+                        title={film.name}
+                        rating={film.rating.kp}
+                        ageRate={`${film.ageRating}+`}
+                        slogan={film.slogan}
+                        year={film.year}
+                    />
+                    )
+                })}
             </div>
         </Flexbox>
     )

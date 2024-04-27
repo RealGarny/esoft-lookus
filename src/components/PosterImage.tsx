@@ -9,7 +9,7 @@ const PosterImage:React.FC<PosterImageProps> = ({posterURL="", className}) => {
     }
 
     return(
-        <img alt="card-image" className={`absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] scale-125 ${className ? className : ""}`} src={posterURL}/>
+        <img alt="card-image" className={`absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] size-full ${className ? className : ""}`} src={posterURL}/>
     )
 }
 
