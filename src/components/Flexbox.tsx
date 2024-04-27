@@ -1,8 +1,12 @@
 import { ContainerProps } from "../interfaces"
 
-const Flexbox = (props:ContainerProps) => {
+interface FlexboxProps extends ContainerProps {
+    gap?:string
+}
+
+const Flexbox:React.FC<FlexboxProps> = (props) => {
     return(
-    <div className={`flex gap-2 ${props.className}`}>
+    <div className={`flex ${!props.gap ? "gap-2" : `gap-${props.gap}`} ${props.className}`}>
         {props.children}
     </div>
     )

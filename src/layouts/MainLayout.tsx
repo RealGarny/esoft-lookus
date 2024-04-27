@@ -7,7 +7,7 @@ const MainLayout = () => {
     return(
         <>
             <Container maxW="xl">
-                <Flexbox className="gap-0">
+                <Flexbox gap="0">
                     <Sidebar/>
                     <div className="h-full w-full">
                         <Outlet/>

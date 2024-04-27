@@ -1,5 +1,6 @@
 
 import Flexbox from "./Flexbox";
+import PosterImage from "./PosterImage";
 import Text from "./Text"
 
 interface cardProps {
@@ -7,33 +8,37 @@ interface cardProps {
     posterURL?: string,
     title: string,
     pageURL: string,
+    rating?: string,
+    ageRate?: string,
+    year?: string,
 }
 
 const Card:React.FC<cardProps> = (props) => {
     if(!props.title) {
         return <h1>title was not provided</h1>;
     }
-
+    console.log(props.posterURL)
+    
     return(
         <Flexbox className={`flex-col overflow-hidden group bg-secondary border border-accent rounded-lg max-w-72 ${props.className}`}>
-            <div className="relative h-36 max-w-64 overflow-hidden">
+            <div className="relative h-36 overflow-hidden">
                 <a className="cursor-pointer" href={props.pageURL}>
-                {
-                    props.posterURL && typeof(props.posterURL === "string")
-                    && <img alt="card-image" className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]" src={props.posterURL}/>
-                }
-                <span className="opacity-0 group-hover:opacity-100 transition absolute top-3 left-2 px-2 py-1 rounded-md bg-green">
-                    <Text>5.8</Text>
+                <PosterImage posterURL={`${props.posterURL}`} className="transition duration-700 group-hover:scale-[1.4]"/>
+                <span className="absolute top-3 left-2 px-2 py-1 rounded-md bg-green">
+                    <Text>{props.rating}</Text>
                 </span>
                 <Text size="md" className="absolute bottom-2 left-2 font-bold">
                     {props.title}
                 </Text>
                 </a>
             </div>
-            <Flexbox className="flex-wrap px-2 py-2">
-                <Text>6+</Text>
-                <Text>2013</Text>
-            </Flexbox >
+            <Flexbox className="flex-col px-2 pb-2">
+                <Text>{props.tagline}</Text>
+                <Flexbox className="flex-wrap">
+                    <Text>{props.ageRate}</Text>
+                    <Text>{props.year}</Text>
+                </Flexbox >
+            </Flexbox>
         </Flexbox>
     )
 }

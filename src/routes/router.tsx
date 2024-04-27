@@ -4,22 +4,23 @@ import MainPage from "../pages/MainPage";
 import Page404 from "../pages/Page404";
 import FilmDetailsPage from "../pages/FilmDetailsPage";
 import FilmsPage from "../pages/FilmsPage";
+import routes from "./routes";
 
 const router = createBrowserRouter([
     {
-      path: "/",
+      path: routes.main,
       element: <MainLayout/>,
       children: [
         {
-          path: "/",
+          path: routes.main,
           element: <MainPage/>
         },
         {
-          path: "/films",
+          path: routes.films,
           element: <FilmsPage/>,
         },
         {
-          path: "/films/:filmId",
+          path: routes.filmsItem,
           element: <FilmDetailsPage/>
         }
       ]
