@@ -28,7 +28,7 @@ const Container = (props:CProps) => {
     }
 
     return(
-        <div className={`${maxW} mx-auto`}>
+        <div className={`${maxW} mx-auto ${props.className}`}>
             {props.children}
         </div>
     )

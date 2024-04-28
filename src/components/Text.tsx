@@ -2,15 +2,15 @@ import React from "react";
 import { ContainerProps } from "../interfaces";
 
 interface TProps extends ContainerProps {
-    type?: string,
     url?: string,
     size?: string,
+    props?: any,
 }
 
-const Text:React.FC<TProps> = (props) => {
+const Text:React.FC<TProps> = ({url, size, className, ...props}:TProps) => {
     let fontSize:string = "";
 
-    switch(props.size) {
+    switch(size) {
         case "lg": 
             fontSize = "md:text-5xl text-3xl"
             break;
@@ -25,14 +25,14 @@ const Text:React.FC<TProps> = (props) => {
             break;
     }
 
-    const cssClasses =  `${fontSize} ${props.className ? props.className : ""}`;
+    const cssClasses =  `${fontSize} ${className ? className : ""}`;
 
-    if(props.url) {
-        return <a href={props.url} className={cssClasses}>{props.children}</a>
+    if(url) {
+        return <a href={url} className={cssClasses} {...props}>{props.children}</a>
     }
     
     return(
-        <p className={cssClasses}>{props.children}</p>
+        <p className={cssClasses} {...props}>{props.children}</p>
     )
 }
 

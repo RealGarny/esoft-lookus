@@ -1,24 +1,13 @@
 import Flexbox from "../components/Flexbox";
 import Text from "../components/Text";
 import Card from "../components/Card";
-import routes from "../routes/routes";
 import { useAppSelector } from "../store/hooks";
 
 const MainPage = () => {
-
-    const filmsItemRoute:string = routes.filmsItem.split(":")[0];
-    const {films, loading, error} = useAppSelector((state) => state.films);
-
-    if(loading) {
-        return <h1>loading</h1>
-    }
-
-    if(error) {
-        return <h1>error</h1>
-    }
+    const { films, favoriteFilms, watchLaterFilms } = useAppSelector((state) => state.films);
 
     return(
-        <Flexbox className="px-12 py-6 flex-col">
+        <Flexbox className="py-6 px-0 md:px-6 flex-col">
             <Text url="#" size="lg" className="font-semibold">Популярные фильмы</Text>
             <Text size="md" className="font-semibold">Фильтры</Text>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
@@ -26,13 +15,9 @@ const MainPage = () => {
                     return(
                     <Card
                         key={film.id}
-                        pageURL={`${filmsItemRoute}${film.id}`}
-                        posterURL={film.poster.url}
-                        title={film.name}
-                        rating={film.rating.kp}
-                        ageRate={`${film.ageRating}+`}
-                        slogan={film.slogan}
-                        year={film.year}
+                        data = {film}
+                        isFavourite = {favoriteFilms.filter(p => p === film.id).length > 0}
+                        isWatchLater = {watchLaterFilms.filter(p => p === film.id).length > 0}
                     />
                     )
                 })}

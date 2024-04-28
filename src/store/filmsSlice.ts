@@ -3,7 +3,10 @@ import filmsAPI from "../data/filmsAPI.json";
 
 export interface films {
     _initialFilms: any[],
-    films: any[]
+    films: any[],
+    favoriteFilms: [string | number] | [],
+    watchLaterFilms: [string | number] | [],
+    selectedFilm: Object,
     loading: boolean,
     error: boolean
 }
@@ -13,7 +16,7 @@ export const fetchFilms = createAsyncThunk(
     async function() {
         //В будующем можно реализовать через API запрос
         // const response = await fetch(api_url);
-        // const data = response.json();
+        // const data = await response.json();
         // return data;
         return filmsAPI;
     }
@@ -22,6 +25,9 @@ export const fetchFilms = createAsyncThunk(
 const initialState: films = {
     _initialFilms: [],
     films: [],
+    selectedFilm: {},
+    favoriteFilms: [],
+    watchLaterFilms: [],
     loading: false,
     error: false
 }
@@ -33,14 +39,22 @@ export const filmsSlice = createSlice({
         clearFilters(state) {
             state.films = state._initialFilms;
         },
-        filterByRating(state, action) {
-            if(action.payload === "asc") {
-                //do filter by asc
-            }
-            if(action.payload === "desc") {
-                //do filter by desc
+        setFilms(state, action) {
+            state.films = action.payload;
+        },
+        getFilm(state, action) {
+            state.selectedFilm = action.payload; //make async in the future
+        },
+        setFavoriteFilms(state, action) {
+            if(typeof(action.payload))  {
+                state.favoriteFilms = action.payload;
             }
         },
+        setWatchLaterFilms(state, action) {
+            if(typeof(action.payload))  {
+                state.watchLaterFilms = action.payload;
+            }
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(fetchFilms.pending, (state) => {
@@ -60,5 +74,11 @@ export const filmsSlice = createSlice({
     }
 })
 
-export const { clearFilters, filterByRating } = filmsSlice.actions;
+export const { 
+    clearFilters,
+    filterByRating,
+    getFilm,
+    setFavoriteFilms,
+    setWatchLaterFilms
+} = filmsSlice.actions;
 export default filmsSlice.reducer;
