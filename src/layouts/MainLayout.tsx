@@ -4,10 +4,19 @@ import Flexbox from "../components/Flexbox"
 import Container from "../components/Container"
 import { useState } from "react"
 import Header from "../components/Header"
+import { useAppDispatch } from "../store/hooks"
+import { useEffect } from "react";
+import { fetchFilms } from "../store/filmsSlice";
 
 const MainLayout = () => {
 
     const [isSidebar, setIsSidebar] = useState(false);
+
+    const dispatch = useAppDispatch();
+
+    useEffect(()=> {
+        dispatch(fetchFilms());
+    },[])
 
     return(
         <>

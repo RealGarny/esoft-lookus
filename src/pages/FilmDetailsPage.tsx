@@ -1,12 +1,16 @@
 import { useParams } from "react-router-dom"
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../store/hooks";
 
 const FilmDetailsPage = () => {
     let { filmId } = useParams();
-    const {films, loading, error} = useSelector(state => state.films);
-    console.log(films)
+    const { films } = useAppSelector(state => state.films);
+
+    if(films.length > 0) {
+        console.log(films.filter((p:any) => p.id == filmId))
+    }
+
     return(
-        <h1>film id: ${filmId}</h1>
+        <h1>film id: {filmId}</h1>
     )
 }
 

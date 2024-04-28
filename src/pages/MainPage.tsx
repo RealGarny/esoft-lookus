@@ -1,21 +1,13 @@
-import Flexbox from "../components/Flexbox"
-import Text from "../components/Text"
-import Card from "../components/Card"
-import filmsAPI from "../data/filmsAPI.json";
+import Flexbox from "../components/Flexbox";
+import Text from "../components/Text";
+import Card from "../components/Card";
 import routes from "../routes/routes";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { fetchFilms } from "../store/filmsSlice";
+import { useAppSelector } from "../store/hooks";
 
 const MainPage = () => {
 
     const filmsItemRoute:string = routes.filmsItem.split(":")[0];
-    const dispatch = useDispatch();
-    const {films, loading, error} = useSelector(state => state.films);
-
-    useEffect(()=> {
-        dispatch(fetchFilms());
-    },[])
+    const {films, loading, error} = useAppSelector((state) => state.films);
 
     if(loading) {
         return <h1>loading</h1>
