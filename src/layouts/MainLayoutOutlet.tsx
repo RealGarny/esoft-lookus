@@ -3,7 +3,7 @@ import { useAppSelector } from "../store/hooks";
 import { memo } from "react";
 
 const MainLayoutOutlet = memo(() => {
-    const { loading, error,watchLaterFilms, favoriteFilms } = useAppSelector(state => state.films);
+    const { loading, error } = useAppSelector(state => state.films);
 
     if(loading) {
         return <h1>loading</h1>

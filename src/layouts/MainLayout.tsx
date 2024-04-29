@@ -1,6 +1,5 @@
 import MainLayoutOutlet from "./MainLayoutOutlet"
 import Sidebar from "../components/Sidebar"
-import Flexbox from "../components/Flexbox"
 import Container from "../components/Container"
 import { useState } from "react"
 import Header from "../components/Header"
@@ -17,8 +16,8 @@ const MainLayout = () => {
     
 
     useEffect(()=> {
-        const tFavFilms = JSON.parse(localStorage.getItem("favoriteFilms"));
-        const tWatchLtrFilms = JSON.parse(localStorage.getItem("watchLaterFilms"));
+        const tFavFilms = JSON.parse(localStorage.getItem("favoriteFilms")!);
+        const tWatchLtrFilms = JSON.parse(localStorage.getItem("watchLaterFilms")!);
 
         dispatch(fetchFilms());
         if(tFavFilms) dispatch(setFavoriteFilms(tFavFilms));
