@@ -36,7 +36,7 @@ export const filmsSlice = createSlice({
     name: 'films',
     initialState,
     reducers: {
-        clearFilters(state) {
+        clearFilms(state) {
             state.films = state._initialFilms;
         },
         setFilms(state, action) {
@@ -75,10 +75,10 @@ export const filmsSlice = createSlice({
 })
 
 export const { 
-    clearFilters,
-    filterByRating,
+    setFilms,
     getFilm,
     setFavoriteFilms,
-    setWatchLaterFilms
+    setWatchLaterFilms,
+    clearFilms
 } = filmsSlice.actions;
 export default filmsSlice.reducer;

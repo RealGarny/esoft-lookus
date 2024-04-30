@@ -10,29 +10,22 @@ const FilmDetailsPage = () => {
     const [isError, setIsError] = useState(false);
     const dispatch = useAppDispatch();
 
-    if(!selectedFilm) {
+    if(!selectedFilm || isError) {
         return(
             <h1>404. film does not exist</h1>
         )
     }
 
     useEffect(() => {
-        if(Object.keys(selectedFilm).length === 0 ) {
+        if(Object.keys(selectedFilm).length === 0 || filmId !== selectedFilm) {
             const [fetchedFilm] = _initialFilms.filter((p:any) => p.id == filmId);
-            console.log(fetchedFilm)
             if(fetchedFilm) {
                 dispatch(getFilm(fetchedFilm));
             } else {
                 setIsError(true);
             }
         }
-    },[])
-
-    if(isError) {
-        return(
-            <h1>404. Film does not exits.</h1>
-        )
-    }
+    },[filmId])
 
     return(
         <>
