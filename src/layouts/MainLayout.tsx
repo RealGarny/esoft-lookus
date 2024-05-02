@@ -32,7 +32,7 @@ const MainLayout = () => {
     return(
         <>
             <Header setIsSidebar={()=>{setIsSidebar(p => !p)}} isSidebar={isSidebar}/>
-            <Container maxW="lg" className="px-4 md:px-0">
+            <Container maxW="lg" className="px-4">
                     <Sidebar isSidebar={isSidebar}/>
                     <div className="h-full w-full">
                         <MainLayoutOutlet/>

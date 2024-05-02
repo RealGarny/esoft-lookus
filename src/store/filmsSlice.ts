@@ -1,9 +1,16 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import filmsAPI from "../data/filmsAPI.json";
 
+
+export interface comment {
+    id:number,
+    creator:string,
+    date:string,
+    body:string,
+}
 export interface filmComment {
-    id: string|number,
-    comments: [string]
+    filmId: string|number,
+    comments: comment[]
 }
 
 export interface filmRatings {
@@ -103,9 +110,21 @@ export const filmsSlice = createSlice({
                 state.watchLaterFilms = action.payload;
             }
         },
-        setFilmComments(state, action) {
-            if(typeof(action.payload))  {
-                state.filmComments = [...state.filmComments, action.payload];
+        setFilmComments(state, action:PayloadAction<filmComment>) {
+            if (state.filmComments.length > 0) {
+                state.filmComments = state.filmComments.map(film => {
+                    if(film.filmId === action.payload.filmId) {
+                        return({
+                            ...film,
+                            comments: [...action.payload.comments,...film.comments]
+                        })
+                    }
+                    else {
+                        return film;
+                    }
+                });
+            } else {
+                state.filmComments = [action.payload]
             }
         }
     },
