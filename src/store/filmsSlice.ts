@@ -102,6 +102,11 @@ export const filmsSlice = createSlice({
             if(typeof(action.payload))  {
                 state.watchLaterFilms = action.payload;
             }
+        },
+        setFilmComments(state, action) {
+            if(typeof(action.payload))  {
+                state.filmComments = [...state.filmComments, action.payload];
+            }
         }
     },
     extraReducers: (builder) => {
@@ -127,6 +132,7 @@ export const {
     getFilm,
     setFavoriteFilms,
     setWatchLaterFilms,
-    clearFilms
+    clearFilms,
+    setFilmComments
 } = filmsSlice.actions;
 export default filmsSlice.reducer;

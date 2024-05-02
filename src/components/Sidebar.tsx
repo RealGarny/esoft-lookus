@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import FilmCard from "./filmcard/FilmCard";
 import Flexbox from "./Flexbox";
