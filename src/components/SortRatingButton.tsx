@@ -4,22 +4,21 @@ import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import { clearFilms, setFilms } from "../store/filmsSlice";
-import Flexbox from "./Flexbox";
 import Button from "./Button";
 import strChange from "../utils/strChange";
 
-const FilterRatingButton = () => {
+const SortRatingButton = () => {
 
     const _initialFilms = useAppSelector((state) => state.films._initialFilms);
     let [searchParams, setSearchParams] = useSearchParams();
     const dispatch = useAppDispatch();
-    const [sortRating, setSortRating] = useState<number>(null); // 0-unassigned, 1-asc, 2-desc
+    const [sortRating, setSortRating] = useState<number|undefined>(undefined); // 0-unassigned, 1-asc, 2-desc
     const sortRatingLabels:string[]  = ["сортировать по рейтингу", "рейтинг по возрастанию", "рейтинг по убыванию"]
 
     const sortByRating = async() => {
         const tempRatingSort = searchParams.get("byRating");
-    
-        if(isNaN(tempRatingSort)) {
+
+        if(tempRatingSort === null || !/^[0-9]+$/.test(tempRatingSort)) {
             setSortRating(0);
             return;
         }
@@ -46,16 +45,16 @@ const FilterRatingButton = () => {
     },[searchParams])
 
     const handleChangeParam = (param:string) => {
-        let index = strChange(sortRating, sortRatingLabels)
+        let index = strChange(sortRating!, sortRatingLabels)
 
-        setSearchParams({[param]: index})
+        setSearchParams((p)=> {return{...p, [param]: index}})
     }
 
     return(
         <Button onClick={()=>{handleChangeParam("byRating")}}>
-            {sortRatingLabels[sortRating]}
+            {sortRatingLabels[sortRating!]}
         </Button>
     )
 }
 
-export default FilterRatingButton;
+export default SortRatingButton;

@@ -4,7 +4,7 @@ import Text from "../Text"
 import routes from "../../routes/routes"
 
 interface pCardPoster {
-    id: string | number,
+    id: number,
     posterURL: string,
     name: string,
     rating: number

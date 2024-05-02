@@ -17,7 +17,7 @@ const Input = (props:Iprops) => {
             name={props.name}
             value={props.value}
             onChange={props.onChange}
-            className={`w-full px-4 py-1 border  border-text border-opacity-25 rounded-lg ${props.className}`}
+            className={`w-full px-4 py-1 border bg-primary border-text border-opacity-25 rounded-lg ${props.className}`}
         />
     )
 }

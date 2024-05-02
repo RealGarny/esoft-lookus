@@ -18,10 +18,10 @@ const Text:React.FC<TProps> = ({url, size, className, ...props}:TProps) => {
             fontSize = "md:text-3xl text-2xl"
             break;
         case "sm":
-            fontSize = "md:text-sm text-xs"
+            fontSize = "md:text-md text-sm"
             break;
         default:
-            fontSize = "md:text-sm text-xs"
+            fontSize = "md:text-md text-sm"
             break;
     }
 

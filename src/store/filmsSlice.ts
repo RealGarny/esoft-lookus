@@ -1,12 +1,59 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import filmsAPI from "../data/filmsAPI.json";
 
+export interface filmComment {
+    id: string|number,
+    comments: [string]
+}
+
+export interface filmRatings {
+    kp:number,
+    imdb:number,
+    filmCritics:number,
+    russianFilmCritics:number
+}
+
+export interface posterUrls {
+    url:string,
+    previewUrl:string
+}
+
+export interface genre {
+    name:string
+}
+
+export interface person {
+    id:number,
+    photo:string,
+    name:string,
+    enName:string,
+    description:string,
+    profession:string,
+    enProfession:string
+}
+
+export interface filmsData {
+    id:number,
+    name:string,
+    year:number,
+    description:string,
+    shortDescription:string,
+    slogan:string,
+    rating: filmRatings,
+    movieLength:number,
+    ageRating:number,
+    poster: posterUrls,
+    genres: genre[],
+    persons: person[]
+}
+
 export interface films {
-    _initialFilms: any[],
-    films: any[],
+    _initialFilms: filmsData[],
+    films: filmsData[] | [],
     favoriteFilms: [string | number] | [],
-    watchLaterFilms: [string | number] | [],
-    selectedFilm: Object,
+    watchLaterFilms: [string | number]| [],
+    filmComments: filmComment[] | [],
+    selectedFilm: filmsData,
     loading: boolean,
     error: boolean
 }
@@ -28,6 +75,7 @@ const initialState: films = {
     selectedFilm: {},
     favoriteFilms: [],
     watchLaterFilms: [],
+    filmComments: [],
     loading: false,
     error: false
 }

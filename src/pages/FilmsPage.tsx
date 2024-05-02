@@ -1,8 +1,7 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import Section from "../components/Section";
 import { useEffect } from "react";
 import { useAppSelector } from "../store/hooks";
-import Flexbox from "../components/Flexbox";
 import FilmCard from "../components/filmcard/FilmCard";
 import FilmCardActions from "../components/filmcard/FilmCardActions";
 import FilmCardPoster from "../components/filmcard/FilmCardPoster";
@@ -10,14 +9,22 @@ import FilmCardInfo from "../components/filmcard/FilmCardInfo";
 
 const FilmsPage = () => {
     const location = useLocation();
+    const [searchParams, setSearchParams] = useSearchParams();
     const films = useAppSelector(state => state.films.films)
     
     useEffect(()=>{
-        if(!!location.state) {
-            const queryParams = location.state.queries;
-            console.log(queryParams);
+        if(!!location.state && location.state.queries) { //checking if location queries exist and adding them to query parameters
+            location.state.queries.forEach((queryObj:Object) => { 
+                for (const [key, value] of Object.entries(queryObj)) {
+                    setSearchParams((prevState) => {return{...prevState, [key]:value}})
+                }
+                  
+            });
         };
-    },[])
+        for(let queryEntry in searchParams.entries()) {
+            console.log(queryEntry)
+        }
+    },[location])
     //create filmsList component
     return(
         <Section header="Поиск фильма">

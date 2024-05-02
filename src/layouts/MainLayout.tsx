@@ -6,14 +6,19 @@ import Header from "../components/Header"
 import { useAppDispatch } from "../store/hooks"
 import { useEffect } from "react";
 import { fetchFilms, setFavoriteFilms, setWatchLaterFilms } from "../store/filmsSlice";
+import { useLocation } from "react-router-dom"
 
 const MainLayout = () => {
 
     const [isSidebar, setIsSidebar] = useState(false);
+    const location = useLocation();
 
     const dispatch = useAppDispatch();
 
-    
+    useEffect(()=>{
+        setIsSidebar(false);
+    }
+    ,[location])
 
     useEffect(()=> {
         const tFavFilms = JSON.parse(localStorage.getItem("favoriteFilms")!);

@@ -4,14 +4,14 @@ import FilmCard from "../components/filmcard/FilmCard";
 import FilmCardInfo from "../components/filmcard/FilmCardInfo";
 import FilmCardActions from "../components/filmcard/FilmCardActions";
 import Section from "../components/Section";
-import FilterRatingButton from "../components/FilterRatingButton";
+import SortRatingButton from "../components/SortRatingButton";
 
 const MainPage = () => {
     const films = useAppSelector((state) => state.films.films);
 
     return(
         <Section header="Популярные фильмы" headerSize="lg" className="py-6">
-            <FilterRatingButton/>
+            <SortRatingButton/>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                 {films.map((film) => {
                     return(

@@ -1,5 +1,8 @@
-const strChange = (actual:number, labels:string[]):number|null => {
-    if(typeof(actual) !== "number") return null;
+const strChange = (actual:number, labels:string[]):number => {
+    if(typeof(actual) !== "number") {
+      console.error("strChange: provided parameter is not of type number");
+      return 0;
+    };
 
     let index:number = actual;
 
