@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Flexbox from "./Flexbox";
 import Text from "./Text";
 import routes from "../routes/routes";
+import CenteredImg from "./CenteredImg";
 
 interface HeaderProps {
     setIsSidebar: (...args:any) => void,
@@ -10,10 +11,10 @@ interface HeaderProps {
 
 const Header:React.FC<HeaderProps> = ({setIsSidebar, isSidebar}) => {
     return(
-        <Flexbox className=" px-4 sticky top-0 z-20 bg-secondary border-b border-accent">
-            <button onClick={setIsSidebar}>{isSidebar ? "Close" : "Open"}</button>
+        <Flexbox className=" px-4 py-2 items-center sticky py-auto top-0 z-20 bg-secondary border-b border-accent">
+            <button className="relative w-6 h-6" onClick={setIsSidebar}><CenteredImg className="filter invert" posterURL={isSidebar ? "/x.svg" : "/burger.svg"}/></button>
             <Link to={routes.main}>
-                <Text size="md" className="font-bold text-3xl py-2">Lookus</Text>
+                <img className="filter invert translate-y-1" src="/logo.svg"/>
             </Link>
         </Flexbox>
     )

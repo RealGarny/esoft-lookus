@@ -110,10 +110,12 @@ export const filmsSlice = createSlice({
                 state.watchLaterFilms = action.payload;
             }
         },
-        setFilmComments(state, action:PayloadAction<filmComment>) {
-            if (state.filmComments.length > 0) {
+        addFilmComment(state, action:PayloadAction<filmComment>) {
+            if (state.filmComments.length < 1 || !state.filmComments.find(film => action.payload.filmId == film.filmId)) {
+                state.filmComments = [...state.filmComments, action.payload]
+            } else {
                 state.filmComments = state.filmComments.map(film => {
-                    if(film.filmId === action.payload.filmId) {
+                    if(film.filmId == action.payload.filmId) {
                         return({
                             ...film,
                             comments: [...action.payload.comments,...film.comments]
@@ -123,9 +125,10 @@ export const filmsSlice = createSlice({
                         return film;
                     }
                 });
-            } else {
-                state.filmComments = [action.payload]
             }
+        },
+        setFilmComments(state, action:PayloadAction<filmComment[] | []>) {
+            state.filmComments = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -152,6 +155,7 @@ export const {
     setFavoriteFilms,
     setWatchLaterFilms,
     clearFilms,
+    addFilmComment,
     setFilmComments
 } = filmsSlice.actions;
 export default filmsSlice.reducer;

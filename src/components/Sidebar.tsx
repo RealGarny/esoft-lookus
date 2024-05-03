@@ -45,7 +45,7 @@ const Sidebar = ({isSidebar}:SidebarProps) => {
                                                 orientation="horizontal"
                                                 className="justify-between align-middle w-full px-2 py-1"
                                                 poster= {<Link to={`${routes.filmsItem.split(":")[0]}${film.id}`} className="flex flex-col justify-center"><Text className="font-bold">{film.name}</Text></Link>}
-                                                actions={<Button className="px-2 border-accent bg-accent" onClick={()=>{handleDelete(film.id, setFavoriteFilms, "favoriteFilms")}}>X</Button>}
+                                                actions={<Button className="h-full" onClick={()=>{handleDelete(film.id, setFavoriteFilms, "favoriteFilms")}}><img className="p invert size-5" src="/x.svg"/></Button>}
                                             />
                                         )
                                     }
@@ -68,7 +68,7 @@ const Sidebar = ({isSidebar}:SidebarProps) => {
                                                 orientation="horizontal"
                                                 className="flex-1 max-h-auto px-1 py-1"
                                                 poster= {<Link to={`${routes.filmsItem.split(":")[0]}${film.id}`}><Text className="font-bold">{film.name}</Text></Link>}
-                                                actions={<Button onClick={()=>{handleDelete(film.id, setWatchLaterFilms, "watchLaterFilms")}}>X</Button>}
+                                                actions={<Button onClick={()=>{handleDelete(film.id, setWatchLaterFilms, "watchLaterFilms")}}><img className="filter invert" src="/x.svg"/></Button>}
                                             />
                                         )
                                     }

@@ -1,9 +1,9 @@
-interface PosterImageProps {
+interface CenteredImgProps {
     posterURL: string,
     className?: string
 }
 
-const PosterImage:React.FC<PosterImageProps> = ({posterURL="", className}) => {
+const CenteredImg:React.FC<CenteredImgProps> = ({posterURL="", className}) => {
     if(typeof(posterURL) !== "string") {
         return null;
     }
@@ -13,4 +13,4 @@ const PosterImage:React.FC<PosterImageProps> = ({posterURL="", className}) => {
     )
 }
 
-export default PosterImage;
+export default CenteredImg;

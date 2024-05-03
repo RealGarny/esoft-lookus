@@ -18,7 +18,7 @@ const FilmCardInfo:React.FC<pFilmCardInfo> = (props) => {
         .slice(0,2)
         .forEach(element => {
             genres.push(
-            <Link key={element.name} to={routes.films} state={{ queries: [{filmGenre : element.name}] }}>
+            <Link key={element.name} to={`${routes.films}/?filmGenre=${element.name}`}>
                 <Button className="bg-primary px-2">{element.name}</Button>
             </Link>)
         })

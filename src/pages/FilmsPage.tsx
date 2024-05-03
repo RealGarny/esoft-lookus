@@ -1,33 +1,49 @@
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import Section from "../components/Section";
 import { useEffect } from "react";
-import { useAppSelector } from "../store/hooks";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import FilmCard from "../components/filmcard/FilmCard";
 import FilmCardActions from "../components/filmcard/FilmCardActions";
 import FilmCardPoster from "../components/filmcard/FilmCardPoster";
 import FilmCardInfo from "../components/filmcard/FilmCardInfo";
+import filter from "../utils/filter";
+import { clearFilms, setFilms } from "../store/filmsSlice";
+import Button from "../components/Button";
 
 const FilmsPage = () => {
-    const location = useLocation();
+    //const location = useLocation();
     const [searchParams, setSearchParams] = useSearchParams();
-    const films = useAppSelector(state => state.films.films)
+    const dispatch = useAppDispatch();
+    const _initialFilms = useAppSelector(state => state.films._initialFilms)
+    const films = useAppSelector(state => state.films.films);
     
+    const handleClear = () => {
+        setSearchParams({});
+        dispatch(clearFilms());
+    }
+
     useEffect(()=>{
+        {/* 
         if(!!location.state && location.state.queries) { //checking if location queries exist and adding them to query parameters
             location.state.queries.forEach((queryObj:Object) => { 
                 for (const [key, value] of Object.entries(queryObj)) {
-                    setSearchParams((prevState) => {return{...prevState, [key]:value}})
+                    setSearchParams((p)=> {return{...p, [key]: value}})
                 }
                   
             });
         };
-        for(let queryEntry in searchParams.entries()) {
-            console.log(queryEntry)
+        */}
+        const FilterByGenreQuery = searchParams.get("filmGenre");
+
+        if(FilterByGenreQuery) {
+            dispatch(setFilms(_initialFilms.filter(film => filter.byGenres(FilterByGenreQuery, film))))
         }
-    },[location])
+
+    },[searchParams])
     //create filmsList component
     return(
-        <Section header="Поиск фильма">
+        <Section header="Поиск фильма" className="py-6">
+            <Button className="border border-text" onClick={handleClear}>очистить</Button>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                 {films.map((film) => {
                     return(

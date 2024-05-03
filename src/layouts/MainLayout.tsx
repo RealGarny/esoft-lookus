@@ -5,7 +5,7 @@ import { useState } from "react"
 import Header from "../components/Header"
 import { useAppDispatch } from "../store/hooks"
 import { useEffect } from "react";
-import { fetchFilms, setFavoriteFilms, setWatchLaterFilms } from "../store/filmsSlice";
+import { fetchFilms, setFavoriteFilms, setFilmComments, setWatchLaterFilms } from "../store/filmsSlice";
 import { useLocation } from "react-router-dom"
 
 const MainLayout = () => {
@@ -23,10 +23,12 @@ const MainLayout = () => {
     useEffect(()=> {
         const tFavFilms = JSON.parse(localStorage.getItem("favoriteFilms")!);
         const tWatchLtrFilms = JSON.parse(localStorage.getItem("watchLaterFilms")!);
+        const tFilmComments = JSON.parse(localStorage.getItem("filmComments")!);
 
         dispatch(fetchFilms());
         if(tFavFilms) dispatch(setFavoriteFilms(tFavFilms));
         if(tWatchLtrFilms) dispatch(setWatchLaterFilms(tWatchLtrFilms));
+        if(tFilmComments) dispatch(setFilmComments(tFilmComments));
     },[])
 
     return(
