@@ -54,11 +54,13 @@ export interface filmsData {
     persons: person[]
 }
 
+export type filmTag = [string | number] | [];
+
 export interface films {
     _initialFilms: filmsData[],
     films: filmsData[] | [],
-    favoriteFilms: [string | number] | [],
-    watchLaterFilms: [string | number]| [],
+    favoriteFilms: filmTag,
+    watchLaterFilms: filmTag,
     filmComments: filmComment[] | [],
     selectedFilm: filmsData,
     loading: boolean,
@@ -94,7 +96,7 @@ export const filmsSlice = createSlice({
         clearFilms(state) {
             state.films = state._initialFilms;
         },
-        setFilms(state, action) {
+        setFilms(state, action:PayloadAction<filmsData[]>) {
             state.films = action.payload;
         },
         getFilm(state, action) {

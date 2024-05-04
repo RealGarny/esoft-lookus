@@ -1,5 +1,6 @@
 import React from "react";
 import { ContainerProps } from "../interfaces";
+import { Link } from "react-router-dom";
 
 interface TProps extends ContainerProps {
     url?: string,
@@ -28,7 +29,11 @@ const Text:React.FC<TProps> = ({url, size, className, ...props}:TProps) => {
     const cssClasses =  `${fontSize} ${className ? className : ""}`;
 
     if(url) {
-        return <a href={url} className={cssClasses} {...props}>{props.children}</a>
+        return (
+            <Link to={url}>
+                <p className={cssClasses} {...props}>{props.children}</p>
+            </Link>
+        )
     }
     
     return(

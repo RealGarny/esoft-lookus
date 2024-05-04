@@ -2,7 +2,7 @@ import { ContainerProps } from "../interfaces"
 import Flexbox from "./Flexbox"
 import Text from "./Text"
 
-interface SectionProps extends ContainerProps {
+export interface SectionProps extends ContainerProps {
     header?:string
     headerSize?: string
 }

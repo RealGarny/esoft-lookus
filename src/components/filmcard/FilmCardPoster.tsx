@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import CenteredImg from "../CenteredImg"
 import Text from "../Text"
 import routes from "../../routes/routes"
+import FilmRating from "./FilmRating"
 
 interface pCardPoster {
     id: number,
@@ -22,9 +23,7 @@ const FilmCardPoster:React.FC<pCardPoster> = (props) => {
                     {props.name}
                 </Text>
                 {props.rating &&
-                    <span className="absolute top-3 left-2 px-2 py-1 rounded-md bg-green">
-                        <Text>{props.rating}</Text>
-                    </span>
+                    <FilmRating rating={props.rating}/>
                 }
             </Link>
         </div>

@@ -1,37 +1,52 @@
 import { filmsData } from "../store/filmsSlice";
 
 class Filter {
-    byGenres(fFirst:filmsData|string, fSecond:filmsData):boolean {
+    async byGenres(parameter:filmsData|string, toFilter:filmsData[]):Promise<filmsData[]> {
 
-        if(typeof(fSecond) !== "object" || Object.keys(fSecond).length < 1) {
+        if(!Array.isArray(toFilter) || toFilter.length < 1) {
             console.error("Filter/simmilarGenres: unexpected second argument.")
-            return false;
+            return toFilter;
         }
 
-        switch (typeof(fFirst)) {
+        let temp:filmsData[] = [];
+
+        switch (typeof(parameter)) {
             case "string":
-                for(let i = 0; i < fSecond.genres.length; i++) {
-                    if(fSecond.genres[i].name === fFirst) return true;
-                }
-                return false;
+                toFilter.map((film) => {
+                    for(let i = 0; i < film.genres.length; i++) {
+                        if(film.genres[i].name === parameter) temp.push(film);
+                    }
+                })
+                return temp;
             case "object":
-                if(Object.keys(fFirst).length < 1) {
+                if(Object.keys(parameter).length < 1) {
                     console.error("Filter/simmilarGenres: first argument is empty.")
-                    return false;
+                    return toFilter;
                 }
-                // Checks if at least one genres tag is simmilar in two given films
-                for(let i = 0; i < fFirst.genres.length; i++) {
-                    for(let j = 0; j < fSecond.genres.length; j++) {
-                        if(fFirst.id !== fSecond.id && fFirst.genres[i].name === fSecond.genres[j].name) {
-                            return true;
+                toFilter.map((film) => {
+                    let abort:boolean = false;
+                    for(let i = 0; i < parameter.genres.length && !abort; i++) {// Checks if at least one genres tag is simmilar in two given films
+                        for(let j = 0; j < film.genres.length && !abort; j++) {
+                            if(parameter.id !== film.id && parameter.genres[i].name === film.genres[j].name) {
+                                temp.push(film);
+                                abort = true;
+                            }
                         }
                     }
-                }
-                return false;
+                })
+                return temp;
             default:
                 console.error("Filter/simmilarGenres: unexpected type provided.");
-                return false;
+                return toFilter;
         }
+    }
+
+    async byName(name:string, toFilter:filmsData[]):Promise<filmsData[]> {
+        if(!name && !toFilter) {
+            console.error("Filter/byName: unexpected input")
+            return toFilter;
+        }
+        return toFilter.filter((film) => film.name === name);
     }
 }
 

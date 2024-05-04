@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { getFilm, setFilmComments } from "../store/filmsSlice";
+import { filmsData, getFilm } from "../store/filmsSlice";
 import { useEffect, useState } from "react";
 import Flexbox from "../components/Flexbox";
 import Text from "../components/Text";
@@ -18,14 +18,22 @@ const FilmDetailsPage = () => {
     let { filmId } = useParams();
     const { selectedFilm, _initialFilms } = useAppSelector(state => state.films);
 
-    const simmilarFilms = Object.keys(selectedFilm).length > 0 ? _initialFilms.filter(film => filter.byGenres(selectedFilm, film)).slice(0,3) : [];
+    const [simmilarFilms, setSimmilarFilms] = useState<filmsData[]>([]);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        const [fetchedFilm] = _initialFilms.filter((p:any) => p.id == filmId);
-        if(typeof(fetchedFilm) !== "undefined") {
-            dispatch(getFilm(fetchedFilm));
+        const fetchData = async() => {
+            const fetchedFilm = _initialFilms.find((p:any) => p.id == filmId);
+
+            if(typeof(fetchedFilm) !== "undefined") {
+                dispatch(getFilm(fetchedFilm));
+                await filter.byGenres(fetchedFilm, _initialFilms)
+                .then((r) => {
+                    setSimmilarFilms(r.slice(0,3))
+                })
+            }
         }
+        fetchData();
     },[filmId])
 
     if(Object.keys(selectedFilm).length < 1) {
