@@ -14,7 +14,7 @@ Lookus - это web-приложение для поиска и просмотр
 - Оставление комментариев на странице фильма.
 - Сохранение данных в localstorage и чтение из него.
 - Фильтрация через query запросы.
-## Инструкция по использованию
+## Запуск проекта
 Для запуска сайта нужно ввести пару простых команд в терминале:
 ```
 git clone https://github.com/RealGarny/esoft-lookus.git
@@ -38,7 +38,7 @@ Lookus - is a web application for searching information about your favorite film
 - Leaving comment on a film page.
 - Saving neseccary data to a localstorage and reading from it.
 - Filtering films via query requests.
-## Instruction manual
+## How to run
 For building and running this project you need to write this commands in your terminal:
 ```
 git clone https://github.com/RealGarny/esoft-lookus.git
