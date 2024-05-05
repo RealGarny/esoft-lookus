@@ -1,11 +1,12 @@
 # Lookus / RU
 
-Lookus - это web-приложение для поиска, оценки и просмотра информации о вашил любимых фильмах.
+Lookus - это web-приложение для поиска и просмотра информации о вашил любимых фильмах.
 
 ## Технологии
-- React
-- Tailwind
-- Redux-toolkit
+- [React](https://react.dev/).
+- [React Router](https://reactrouter.com/en/main).
+- [Tailwind](https://tailwindcss.com/).
+- [Redux-toolkit](https://redux-toolkit.js.org/).
 ## Возможности
 - Поиск фильмов по жанру, имени.
 - Сортировка фильмов по рейтингу.
@@ -23,12 +24,13 @@ npm run dev
 ```
 # Lookus / US
 
-Lookus - is a web application for searching, rating and information search about your favorite films.
+Lookus - is a web application for searching information about your favorite films.
 
 ## Technologies
-- React
-- Tailwind
-- Redux-toolkit
+- [React](https://react.dev/).
+- [React Router](https://reactrouter.com/en/main).
+- [Tailwind](https://tailwindcss.com/).
+- [Redux-toolkit](https://redux-toolkit.js.org/).
 ## Capabilities
 - Search by genre or film name.
 - Sort film by their rating.
