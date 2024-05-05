@@ -6,3 +6,6 @@ body {
     background-color: #413E44;
     color: white;
 }
+body > #root {
+min-height: 100vh;
+}

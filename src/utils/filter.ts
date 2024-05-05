@@ -3,8 +3,12 @@ import { filmsData } from "../store/filmsSlice";
 class Filter {
     async byGenres(parameter:filmsData|string, toFilter:filmsData[]):Promise<filmsData[]> {
 
-        if(!Array.isArray(toFilter) || toFilter.length < 1) {
+        if(!Array.isArray(toFilter)) {
             console.error("Filter/simmilarGenres: unexpected second argument.")
+            return toFilter;
+        }
+
+        if(toFilter.length < 1) {
             return toFilter;
         }
 

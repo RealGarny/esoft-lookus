@@ -1,8 +1,4 @@
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import FilmCardPoster from "../components/filmcard/FilmCardPoster";
-import FilmCard from "../components/filmcard/FilmCard";
-import FilmCardInfo from "../components/filmcard/FilmCardInfo";
-import FilmCardActions from "../components/filmcard/FilmCardActions";
 import Section from "../components/Section";
 import SortRatingButton from "../components/SortRatingButton";
 import { useEffect } from "react";

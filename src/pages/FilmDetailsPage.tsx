@@ -12,7 +12,7 @@ import filter from "../utils/filter";
 import FilmCardInfo from "../components/filmcard/FilmCardInfo";
 import FilmCardActions from "../components/filmcard/FilmCardActions";
 import CommentSection from "../components/CommentSection";
-//import Button from "../components/Button";
+import FilmGenreItem from "../components/filmcard/FilmGenreItem";
 
 const FilmDetailsPage = () => {
     let { filmId } = useParams();
@@ -52,12 +52,18 @@ const FilmDetailsPage = () => {
                     <Text size="lg" className="font-bold">{selectedFilm.name}</Text>
                     <Flexbox className="flex-col opacity-80">
                         <Flexbox>
-                            <Text size="md">{selectedFilm.ageRating}+</Text>
-                            <Text size="md">Рейтинг: {selectedFilm.rating.kp}</Text>
+                            <Text>{selectedFilm.ageRating}+</Text>
+                            <Text>Рейтинг: {selectedFilm.rating.kp}</Text>
                         </Flexbox>
-                        <Text size="md">Продолжительность: {selectedFilm.movieLength}мин.</Text>
-                        <Text>Жанры:</Text>
-                        {selectedFilm.genres.map((genre) => {return(<span key={genre.name}>{genre.name}</span>)})}
+                        <Text>Продолжительность: {selectedFilm.movieLength}мин.</Text>
+                        <Flexbox className="flex-wrap">
+                            {selectedFilm.genres.map((genre) => {return(
+                            <FilmGenreItem
+                                key={genre.name}
+                                name={genre.name}
+                                bgColor={"bg-accent"}
+                            />)})}
+                        </Flexbox>
                     </Flexbox>
                 </Flexbox>
             </Flexbox>

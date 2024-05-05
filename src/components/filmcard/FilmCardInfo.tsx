@@ -3,6 +3,7 @@ import Flexbox from "../Flexbox"
 import Button from "../Button"
 import { Link } from "react-router-dom"
 import routes from "../../routes/routes"
+import FilmGenreItem from "./FilmGenreItem"
 
 interface pFilmCardInfo {
     slogan:string,
@@ -18,9 +19,10 @@ const FilmCardInfo:React.FC<pFilmCardInfo> = (props) => {
         .slice(0,2)
         .forEach(element => {
             genres.push(
-            <Link key={element.name} to={`${routes.films}/?filmGenre=${element.name}`}>
-                <Button className="bg-primary px-2">{element.name}</Button>
-            </Link>)
+            <FilmGenreItem
+                key={element.name}
+                name={element.name}
+            />)
         })
 
     return(
